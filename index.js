@@ -7,7 +7,7 @@ const {
 const express = require('express');
 
 const app = express()
-const url = "https://www.theguardian.com/international"
+const url = "https://www.gazzetta.gr/teams/olympiakos"
 
 
 axios(url)
@@ -16,12 +16,14 @@ axios(url)
     const $ = cheerio.load(html)
     const articles = []
     
-    $('.fc-item__title', html).each(function(){
-      const title = $(this).text()
-      const url = $(this).find('a').attr('href')
+    $('.list-article__info', html).each(function(){
+      const title = $(this).find('.link-overall').text()
+      const url = $(this).find('.link-overall').attr('href')
+      const img = $(this).attr('picture') //DOC cheerio to fetch image
       articles.push({
         title,
-        url
+        url,
+        img
       })
     })
     console.log(articles)
