@@ -1,2 +1,2 @@
 # Web Scraper
-A web scraper build with JS
+A web scraper for Tripadvisor build with JS
