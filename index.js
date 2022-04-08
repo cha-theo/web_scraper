@@ -7,7 +7,7 @@ const {
 const express = require('express');
 
 const app = express()
-const url = "https://www.gazzetta.gr/teams/olympiakos"
+const url = "https://www.tripadvisor.com.gr/Restaurant_Review-g189473-d1074569-Reviews-Giannoula-Thessaloniki_Thessaloniki_Region_Central_Macedonia.html"
 
 
 axios(url)
@@ -16,14 +16,14 @@ axios(url)
     const $ = cheerio.load(html)
     const articles = []
     
-    $('.list-article__info', html).each(function(){
-      const title = $(this).find('.link-overall').text()
-      const url = $(this).find('.link-overall').attr('href')
-      const img = $(this).attr('picture') //DOC cheerio to fetch image
+    $('.reviewSelector', html).each(function(){
+      const title = $(this).find('.noQuotes').text()
+      const content = $(this).find('.partial_entry').text()
+      const date = $(this).find('.prw_reviews_stay_date_hsx').text()
       articles.push({
         title,
-        url,
-        img
+        content,
+        date
       })
     })
     console.log(articles)
